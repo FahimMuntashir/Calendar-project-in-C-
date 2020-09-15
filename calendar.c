@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+int firstDayYear(int year);
 
 int main()
 {
@@ -16,11 +17,11 @@ int main()
 
     printf("\n\n  **************Welcome to %d ****************\n\n", year);
 
-    if ((year%4==0 && year%100!=0)|| (year%400==0))
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
     {
-        days[1]=29;
+        days[1] = 29;
     }
-    
+    weekDay = firstDayYear(year);
     for (int i = 0; i < 12; i++)
     {
         printf("\n\n|--------------------%s-------------------|\n", month[i]);
@@ -47,4 +48,10 @@ int main()
         }
         printf("\n");
     }
+}
+
+int firstDayYear(int year)
+{
+    int day = (year * 365 + ((year - 1) / 4) - ((year - 1) / 100) + ((year - 1) / 400)) % 7;
+    return day;
 }
